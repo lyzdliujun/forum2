@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	    <settings>
+        <!-- 设置日志输出为LOG4J，指定 MyBatis 所用日志的具体实现，未指定时将自动查找。-->
+        <setting name="logImpl" value="LOG4J" />
+        <!--将以下画线方式命名的数据库列映射到 Java 对象的驼峰式命名属性中-->
+        <setting name= "mapUnderscoreToCamelCase" value="true" />
+        <!-- 是否使用缓存  -->
+        <setting name="cacheEnabled" value="true" />
+        <!-- 设置超时时间，它决定驱动等待数据库响应的秒数。 -->
+        <setting name="defaultStatementTimeout" value="25000" /> 
+        <!-- 允许 JDBC 支持自动生成主键，需要驱动兼容。如果设置为 true 则这个设置强制使用自动生成主键，尽管一些驱动不能兼容但仍可正常工作（比如 Derby）。 -->
+        <setting name="useGeneratedKeys" value="true" /> 
+        
+        
+        
+    	</settings>
+
+
+</configuration>
