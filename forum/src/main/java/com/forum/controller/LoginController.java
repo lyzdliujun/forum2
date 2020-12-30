@@ -23,8 +23,8 @@ public class LoginController {
 	
 	@RequestMapping(path="/register/",method=RequestMethod.POST)
 	@ResponseBody
-	public String register(@RequestParam("tel") String tel,@RequestParam("password") String password,HttpServletResponse response) {
-		
+	public String register(@RequestParam("tel") String tel,@RequestParam("password") String password,
+			HttpServletResponse response) {
 		try {
 			Map<String,Object> resultMap = userService.register(tel,password);
 			if(resultMap.containsKey("ticket")) {
@@ -38,12 +38,32 @@ public class LoginController {
 			}else {
 				return ForumUntils.toJsonString(500, resultMap);
 			}
-			
 		} catch (Exception e) {
 			return ForumUntils.toJsonString(500, "注册失败!");
 		}
 	}
 	
+	@RequestMapping(path="/login/",method=RequestMethod.POST)
+	@ResponseBody
+	public String login(@RequestParam("tel") String tel,@RequestParam("password") String password,
+			HttpServletResponse response) {
+		try {
+			Map<String,Object> resultMap = userService.register(tel,password);
+			if(resultMap.containsKey("ticket")) {
+				// 页面端返回ticket
+				Cookie cookie = new Cookie("ticket", resultMap.get("ticket").toString());
+				// 设置有效时间
+				cookie.setMaxAge(60*24*12);
+				cookie.setPath("/");
+				response.addCookie(cookie);
+				return ForumUntils.toJsonString(200, resultMap);
+			}else {
+				return ForumUntils.toJsonString(500, resultMap);
+			}
+		} catch (Exception e) {
+			return ForumUntils.toJsonString(500, "注册失败!");
+		}
+	}
 	
 	
 }
